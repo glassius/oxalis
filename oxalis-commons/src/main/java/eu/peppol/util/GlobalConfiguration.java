@@ -154,6 +154,10 @@ public enum GlobalConfiguration {
         return JDBC_DRIVER_CLASS_PATH.getValue(properties);
     }
 
+    public String getJdbcValidationQuery() {
+        return JDBC_VALIDATION_QUERY.getValue(properties);
+    }
+
     /**
      * Location of the Difi private key, which belongs to oxalis-statistics-public.key
      *
@@ -278,6 +282,11 @@ public enum GlobalConfiguration {
          * Location of the JDBC driver named in JDBC_DRIVER_CLASS
          */
         JDBC_DRIVER_CLASS_PATH("oxalis.jdbc.class.path", true),
+
+        /**
+         * Validation query used on retrieval from DBCP
+         */
+        JDBC_VALIDATION_QUERY("oxalis.jdbc.validationquery", false, "select 1"),
 
         /**
          * Name of JNDI Data Source

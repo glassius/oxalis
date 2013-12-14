@@ -63,6 +63,7 @@ public class OxalisDataSourceFactoryDbcpImpl implements OxalisDataSourceFactory 
         String connectURI = globalConfiguration.getJdbcConnectionURI();
         String userName = globalConfiguration.getJdbcUsername();
         String password = globalConfiguration.getJdbcPassword();
+        String validationQuery = globalConfiguration.getJdbcValidationQuery();
 
         log.debug("className=" + className);
         log.debug("connectURI=" + connectURI);
@@ -92,7 +93,7 @@ public class OxalisDataSourceFactoryDbcpImpl implements OxalisDataSourceFactory 
 
         // DBCP Factory holding the pooled connection, which are created by the driver connection factory and held in the supplied pool
         PoolableConnectionFactory poolableConnectionFactory = new PoolableConnectionFactory(driverConnectionFactory, genericObjectPool, null, null, false, true);
-        poolableConnectionFactory.setValidationQuery("select 1");   // Very fast in MySQL :-)
+        poolableConnectionFactory.setValidationQuery(validationQuery);
 
         // Creates the actual DataSource instance
         PoolingDataSource poolingDataSource = new PoolingDataSource(genericObjectPool);
